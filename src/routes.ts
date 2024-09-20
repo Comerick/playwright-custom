@@ -34,7 +34,13 @@ router.addHandler('detail', async ({ request, page, log }) => {
             }, { timeout: 30000 }),
             modelBtn.click()
         ]);
-
+        log.info('Data found',{
+            modelUrl: modelRequest?.url || null,
+            productUrl: request?.url,
+            pageTitle,
+            keywords: null,
+            title: pageTitle
+        });
         await Dataset.pushData({
             modelUrl: modelRequest?.url || null,
             productUrl: request?.url,
