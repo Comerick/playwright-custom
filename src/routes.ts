@@ -28,7 +28,7 @@ router.addHandler('detail', async ({ request, page, log }) => {
 
         // Intercept network requests and click the button
         const [modelRequest] = await Promise.all([
-            page.waitForRequest(request => {
+            page.waitForRequest((request) => {
                 log.info(`Request url:${request.url()}`)
                 return /\.glb$/.test(request.url())
             }, { timeout: 30000 }),

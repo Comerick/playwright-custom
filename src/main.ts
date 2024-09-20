@@ -30,19 +30,21 @@ const {
 const proxyConfiguration = await Actor.createProxyConfiguration();
 
 const launchContext = {
-    launchOptions: {
-        args: [
-            '--use-fake-device-for-media-stream', // Use a fake camera device for testing
-            '--use-fake-ui-for-media-stream', // Bypass the camera permission dialog
-            '--auto-accept-camera-and-microphone-capture'
-        ],
-    }
+
 }
 const crawler = new PlaywrightCrawler({
     proxyConfiguration,
     maxRequestsPerCrawl,
     requestHandler: router,
-    launchContext,
+    launchContext: {
+        launchOptions: {
+            args: [
+                '--auto-accept-camera-and-microphone-capture'
+            ],
+            headless: true,
+        },
+
+    },
 });
 
 
