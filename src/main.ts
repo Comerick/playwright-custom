@@ -35,10 +35,10 @@ const crawler = new PlaywrightCrawler({
     maxRequestsPerCrawl,
     requestHandler: router,
     launchContext: {
+
         launchOptions: {
-            browserContextOptions: {
-                permissions: ['camera', 'microphone'], // Allow camera and microphone
-            },
+            permissions: ['camera', 'microphone'], // Allow camera and microphone
+
             headless: true,
         },
 
