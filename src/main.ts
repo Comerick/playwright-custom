@@ -29,18 +29,16 @@ const {
 
 const proxyConfiguration = await Actor.createProxyConfiguration();
 
-const launchContext = {
 
-}
 const crawler = new PlaywrightCrawler({
     proxyConfiguration,
     maxRequestsPerCrawl,
     requestHandler: router,
     launchContext: {
         launchOptions: {
-            args: [
-                '--auto-accept-camera-and-microphone-capture'
-            ],
+            browserContextOptions: {
+                permissions: ['camera', 'microphone'], // Allow camera and microphone
+            },
             headless: true,
         },
 
