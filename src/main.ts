@@ -39,10 +39,14 @@ const crawler = new PlaywrightCrawler({
         launcher: firefox,
         useChrome: false,
         launchOptions: {
-            permissions: ['camera', 'microphone'], // Allow camera and microphone
+            // chrome only
+           // permissions: ['camera', 'microphone'], // Allow camera and microphone
 
             headless: true,
-
+            firefoxUserPrefs: {
+                'permissions.default.microphone': 1,
+                'permissions.default.camera': 1,
+            },
         },
 
     },
