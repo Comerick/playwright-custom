@@ -5,7 +5,7 @@
     "description": "Crawlee and Playwright project in typescript.",
     "version": "0.0",
     "meta": {
-        "templateId": "ts-crawlee-playwright-chrome"
+        "templateId": "ts-crawlee-playwright-firefox"
     },
     "input": "./input_schema.json",
     "dockerfile": "./Dockerfile"
