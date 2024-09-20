@@ -41,7 +41,9 @@ router.addHandler('detail', async ({ request, page, log }) => {
             keywords: null,
             title: pageTitle
         });
-        await Dataset.pushData({
+        const dataset = await Dataset.open('wark');
+
+        await dataset.pushData({
             modelUrl: modelRequest?.url || null,
             productUrl: request?.url,
             pageTitle,
