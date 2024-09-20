@@ -23,7 +23,7 @@ await Actor.init();
 
 // Structure of input is defined in input_schema.json
 const {
-    startUrls = ['https://crawlee.dev'],
+    startUrls = ['https://www.warbyparker.com/eyeglasses/weathers/hudson-blue-fade?w=medium'],
     maxRequestsPerCrawl = 100,
 } = await Actor.getInput<Input>() ?? {} as Input;
 
