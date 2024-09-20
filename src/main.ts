@@ -3,7 +3,7 @@
  * Use this to bootstrap your projects using the most up-to-date code.
  * If you're looking for examples or want to learn more, see README.
  */
-
+import { firefox } from 'playwright';
 // For more information, see https://docs.apify.com/sdk/js
 import { Actor } from 'apify';
 // For more information, see https://crawlee.dev
@@ -34,12 +34,14 @@ const crawler = new PlaywrightCrawler({
     proxyConfiguration,
     maxRequestsPerCrawl,
     requestHandler: router,
-    launchContext: {
 
+    launchContext: {
+        launcher: firefox,
         launchOptions: {
             permissions: ['camera', 'microphone'], // Allow camera and microphone
 
             headless: true,
+
         },
 
     },
