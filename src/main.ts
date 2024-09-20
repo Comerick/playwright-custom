@@ -37,6 +37,7 @@ const crawler = new PlaywrightCrawler({
 
     launchContext: {
         launcher: firefox,
+        useChrome: false,
         launchOptions: {
             permissions: ['camera', 'microphone'], // Allow camera and microphone
 
