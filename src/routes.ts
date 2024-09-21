@@ -25,24 +25,22 @@ router.addHandler("detail", async ({ request, page, log }) => {
 
     if (modelBtn) {
         log.info(`modelBtn exists: ${!!modelBtn}`);
-
-        const scriptTag = await page.$('script[type="application/ld+json"][data-testid="application-ld-json"]', {timeout: 7000});
+        const scriptTag = await page.$('script[type="application/ld+json"][data-testid="application-ld-json"]');
         if (!scriptTag) return;
         const scriptContent = await scriptTag.textContent();
-        const jsonData = JSON.parse(scriptContent);
+        const jsonData = JSON.parse(scriptContent as string) as unknown as Record<string, any>;
 
-        const matchingItem = jsonData?.itemListElement?.find?.(item =>
-            item.item["@id"].includes("https://www.warbyparker.com/frames/pdp")
+        const matchingItem = jsonData?.itemListElement?.find?.((item: Record<string, any>) => item.item['@id'].includes('https://www.warbyparker.com/frames/pdp')
         );
 
         if (!matchingItem) return;
 
-        const extractedSlug = matchingItem.item["@id"].split('/').pop();
+        const extractedSlug = matchingItem.item['@id'].split('/').pop();
 
         const modelUrl = `https://www-next-vto.warbyparker.com/${extractedSlug}_medium.glb`;
 
 
-        log.info("Data found", {
+        log.info('Data found', {
             modelUrl: modelUrl || null,
             productUrl: request?.url,
             pageTitle,
