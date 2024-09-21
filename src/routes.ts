@@ -27,7 +27,7 @@ router.addHandler("detail", async ({ request, page, log }) => {
         log.info(`modelBtn exists: ${!!modelBtn}`);
 
         const scriptTag = await page.$('script[type="application/ld+json"][data-testid="application-ld-json"]', {timeout: 7000});
-
+        if (!scriptTag) return;
         const scriptContent = await scriptTag.textContent();
         const jsonData = JSON.parse(scriptContent);
 

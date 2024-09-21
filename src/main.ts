@@ -24,9 +24,9 @@ await Actor.init();
 // Structure of input is defined in input_schema.json
 const {
     startUrls = [
-        "https://www.warbyparker.com/eyeglasses",
+        "https://www.warbyparker.com/eyeglasses/percey/crystal-with-oak-barrel-and-blue-bay?w=medium",
     ],
-    maxRequestsPerCrawl = 100,
+    maxRequestsPerCrawl = 1000,
 } = (await Actor.getInput<Input>()) ?? ({} as Input);
 
 const proxyConfiguration = await Actor.createProxyConfiguration();
