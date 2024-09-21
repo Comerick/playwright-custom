@@ -3,15 +3,15 @@
  * Use this to bootstrap your projects using the most up-to-date code.
  * If you're looking for examples or want to learn more, see README.
  */
-import { firefox } from 'playwright';
+import { firefox } from "playwright";
 // For more information, see https://docs.apify.com/sdk/js
-import { Actor } from 'apify';
+import { Actor } from "apify";
 // For more information, see https://crawlee.dev
-import { PlaywrightCrawler } from 'crawlee';
+import { PlaywrightCrawler } from "crawlee";
 // this is ESM project, and as such, it requires you to specify extensions in your relative imports
 // read more about this here: https://nodejs.org/docs/latest-v18.x/api/esm.html#mandatory-file-extensions
 // note that we need to use `.js` even when inside TS files
-import { router } from './routes.js';
+import { router } from "./routes.js";
 
 interface Input {
     startUrls: string[];
@@ -23,12 +23,13 @@ await Actor.init();
 
 // Structure of input is defined in input_schema.json
 const {
-    startUrls = ['https://www.warbyparker.com/eyeglasses/weathers/hudson-blue-fade?w=medium'],
+    startUrls = [
+        "https://www.warbyparker.com/eyeglasses",
+    ],
     maxRequestsPerCrawl = 100,
-} = await Actor.getInput<Input>() ?? {} as Input;
+} = (await Actor.getInput<Input>()) ?? ({} as Input);
 
 const proxyConfiguration = await Actor.createProxyConfiguration();
-
 
 const crawler = new PlaywrightCrawler({
     proxyConfiguration,
@@ -40,18 +41,16 @@ const crawler = new PlaywrightCrawler({
         useChrome: false,
         launchOptions: {
             // chrome only
-           // permissions: ['camera', 'microphone'], // Allow camera and microphone
+            // permissions: ['camera', 'microphone'], // Allow camera and microphone
 
             headless: true,
             firefoxUserPrefs: {
-                'permissions.default.microphone': 1,
-                'permissions.default.camera': 1,
+                "permissions.default.microphone": 1,
+                "permissions.default.camera": 1,
             },
         },
-
     },
 });
-
 
 await crawler.run(startUrls);
 
